@@ -3,5 +3,4 @@
 #include "include/rb_tree.h"
 
 RBTree::RBTree() {
-
 }
