@@ -4,11 +4,11 @@
 #define MODULES_RB_TREE_INCLUDE_RB_TREE_H_
 
 struct Node {
-       int data = 0;
-       Node* parent = nullptr;
-       Node* left = nullptr;
-       Node* right = nullptr;
-       bool color = false; // false - Black, true - Red
+       int data;
+       Node* parent;
+       Node* left;
+       Node* right;
+       bool color; // false - Black, true - Red
 };
 
 class RBTree {
@@ -16,6 +16,7 @@ class RBTree {
     RBTree();
     ~RBTree();
     Node* getRoot() { return _root; }
+    void insert(Node* node);
  private:
     Node* _root;
 };

@@ -9,7 +9,7 @@ TEST(RBTreeTest, Default_Constructor) {
 }
 
 TEST(RBTreeTest, Construct_Node) {
-    Node node{15};
+    Node node = { 15, nullptr, nullptr, nullptr, false };
 
     ASSERT_EQ(15, node.data);
 }
@@ -17,5 +17,14 @@ TEST(RBTreeTest, Construct_Node) {
 TEST(RBTreeTest, Default_Constructor_Have_Root) {
     RBTree tree{};
     
-    ASSERT_EQ(false, tree.getRoot()->color);
+    ASSERT_EQ(static_cast<bool>(false), 
+              static_cast<bool>(tree.getRoot()->color));
 }
+
+// TEST(RBTreeTest, Can_Insert) {
+//     RBTree tree;
+
+//     tree.insert(new Node{15});
+
+//     ASSERT_EQ(15, tree.getRoot()->left->data);
+// }
