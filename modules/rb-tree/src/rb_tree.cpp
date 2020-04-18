@@ -2,7 +2,11 @@
 
 #include "include/rb_tree.h"
 
-RBTree::RBTree() : _root(new Node{ 0, nullptr, nullptr, nullptr, false }) {
+Node::Node(int data, Node* parent, Node* left, 
+    Node* right, bool color) : _data(data), _parent(parent),
+    _left(left), _right(right), _color(color) {}
+
+RBTree::RBTree() : _root(new Node()) {
 }
 
 RBTree::~RBTree() {
