@@ -5,7 +5,7 @@
 
 class Node {
  public:
-    Node(int data = 0, Node* parent = nullptr, Node* left = nullptr, 
+    Node(int data = 0, Node* parent = nullptr, Node* left = nullptr,
          Node* right = nullptr, bool color = false);
     int getData() { return _data; }
     Node* getParent() { return _parent; }
@@ -22,7 +22,7 @@ class Node {
     Node* _parent;
     Node* _left;
     Node* _right;
-    bool _color; // false - Black, true - Red
+    bool _color;  // false - Black, true - Red
 };
 
 class RBTree {
@@ -31,6 +31,12 @@ class RBTree {
     ~RBTree();
     Node* getRoot() { return _root; }
     void insert(Node* node);
+    Node* find(const int& data);
+private:
+    void insertBalancing(Node *node);
+    void leftRotate(Node* node);
+    void rightRotate(Node* node);
+    void repaint(Node* node);
  private:
     Node* _root;
 };
