@@ -2,5 +2,9 @@
 
 #include "include/rb_tree.h"
 
-RBTree::RBTree() {
+RBTree::RBTree() : _root(new Node{}) {
+}
+
+RBTree::~RBTree() {
+    delete[] _root;
 }
