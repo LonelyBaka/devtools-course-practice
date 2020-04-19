@@ -99,3 +99,22 @@ TEST(RBTreeTest, Can_Remove_In_Large_Tree) {
 
     ASSERT_EQ(nullptr, tree.find(10));
 }
+
+TEST(RBTreeTest, Insert_And_Remove_Different_Numbers) {
+    RBTree tree;
+
+    tree.insert(new Node(-5));
+    tree.insert(new Node(15));
+    tree.insert(new Node(4));
+    tree.insert(new Node(25));
+    tree.insert(new Node(-3));
+    tree.insert(new Node(-15));
+    tree.remove(-15);
+    tree.remove(-3);
+    tree.insert(new Node(-17));
+    tree.remove(4);
+    tree.remove(25);
+    tree.insert(new Node(14));
+    tree.insert(new Node(13));
+    tree.insert(new Node(-2));
+}

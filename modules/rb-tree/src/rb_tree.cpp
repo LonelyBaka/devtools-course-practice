@@ -145,10 +145,11 @@ void RBTree::remove(const int data) {
         throw "No node with this data in tree";
     Node* node = find_res;
     Node* tmp1 = node;
-    Node* tmp2;
+    Node* tmp2 = node->getParent();
     bool tmp1_original_color = tmp1->getColor();
     if (node->getLeft() == nullptr && node->getRight() == nullptr) {
-        if (node->getParent()->getLeft()->getData() == node->getData())
+        if (node->getParent()->getLeft() != nullptr &&
+            node->getParent()->getLeft()->getData() == node->getData())
             node->getParent()->setLeft(nullptr);
         else
             node->getParent()->setRight(nullptr);
