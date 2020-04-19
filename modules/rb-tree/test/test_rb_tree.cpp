@@ -51,3 +51,51 @@ TEST(RBTreeTest, Can_Find_Element) {
 
     ASSERT_TRUE(tree.find(-5)->getColor());
 }
+
+TEST(RBTreeTest, Can_Remove_Element) {
+    RBTree tree;
+
+    tree.insert(new Node(-5));
+    tree.insert(new Node(10));
+    tree.insert(new Node(5));
+    tree.insert(new Node(15));
+    tree.remove(-5);
+
+    ASSERT_EQ(tree.find(-5), nullptr);
+}
+
+TEST(RBTreeTest, Cant_Insert_Exist_Element) {
+    RBTree tree;
+
+    tree.insert(new Node(-5));
+    
+    ASSERT_ANY_THROW(tree.insert(new Node(-5)));
+}
+
+TEST(RBTreeTest, Cant_Remove_No_Exist_Element) {
+    RBTree tree;
+
+    tree.insert(new Node(-5));
+    
+    ASSERT_ANY_THROW(tree.remove(10));
+}
+
+TEST(RBTreeTest, Can_Make_Large_Tree) {
+    RBTree tree;
+
+    for (int i = 1; i < 50; ++i)
+        tree.insert(new Node(i));
+
+    ASSERT_EQ(22, tree.find(22)->getData());
+}
+
+TEST(RBTreeTest, Can_Remove_In_Large_Tree) {
+    RBTree tree;
+
+    for (int i = 1; i < 50; ++i)
+        tree.insert(new Node(i));
+    for (int i = 2; i < 20; i+=2)
+        tree.remove(i);
+
+    ASSERT_EQ(nullptr, tree.find(10));
+}

@@ -32,11 +32,14 @@ class RBTree {
     Node* getRoot() { return _root; }
     void insert(Node* node);
     Node* find(const int& data);
+    void remove(const int data);
 private:
-    void insertBalancing(Node *node);
+    void insertBalancing(Node* node);
     void leftRotate(Node* node);
     void rightRotate(Node* node);
     void repaint(Node* node);
+    void swap(Node* node1, Node* node2);
+    void RBTree::removeBalancing(Node* node);
  private:
     Node* _root;
 };
