@@ -9,7 +9,7 @@ TEST(RBTreeTest, Default_Constructor) {
 }
 
 TEST(RBTreeTest, Construct_Node) {
-    Node node{ 15 };
+    Node node(15);
 
     ASSERT_EQ(15, node.getData());
 }
@@ -68,7 +68,7 @@ TEST(RBTreeTest, Cant_Insert_Exist_Element) {
     RBTree tree;
 
     tree.insert(new Node(-5));
-    
+
     ASSERT_ANY_THROW(tree.insert(new Node(-5)));
 }
 
@@ -76,7 +76,7 @@ TEST(RBTreeTest, Cant_Remove_No_Exist_Element) {
     RBTree tree;
 
     tree.insert(new Node(-5));
-    
+
     ASSERT_ANY_THROW(tree.remove(10));
 }
 

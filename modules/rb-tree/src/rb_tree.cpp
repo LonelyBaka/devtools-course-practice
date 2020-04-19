@@ -2,7 +2,7 @@
 
 #include "include/rb_tree.h"
 
-Node::Node(int data, Node* parent, Node* left, 
+Node::Node(int data, Node* parent, Node* left,
     Node* right, bool color) : _data(data), _parent(parent),
     _left(left), _right(right), _color(color) {}
 
@@ -45,7 +45,8 @@ void RBTree::insert(Node* node) {
 }
 
 void RBTree::insertBalancing(Node* node) {
-    while (node->getParent() != nullptr && node->getParent()->getColor() == true) {
+    while (node->getParent() != nullptr &&
+           node->getParent()->getColor() == true) {
         if (node->getParent() == node->getParent()->getParent()->getLeft()) {
             Node* tmp = node->getParent()->getParent()->getRight();
             if (tmp != nullptr && tmp->getColor() == true) {
@@ -149,28 +150,29 @@ void RBTree::remove(const int data) {
     if (node->getLeft() == nullptr && node->getRight() == nullptr) {
         if (node->getParent()->getLeft()->getData() == node->getData())
             node->getParent()->setLeft(nullptr);
-        else node->getParent()->setRight(nullptr);
+        else
+            node->getParent()->setRight(nullptr);
         delete[] node;
     } else if (node->getLeft() == nullptr) {
         tmp2 = node->getRight();
-        swap(node, node->getRight());
+        swapNodes(node, node->getRight());
     } else if (node->getRight() == nullptr) {
         tmp2 = node->getLeft();
-        swap(node, node->getLeft());
+        swapNodes(node, node->getLeft());
     } else {
         tmp1 = node->getRight();
-        while(tmp1->getLeft() != nullptr)
+        while (tmp1->getLeft() != nullptr)
             tmp1 = tmp1->getLeft();
         tmp1_original_color = tmp1->getColor();
         tmp2 = tmp1->getRight();
         if (tmp1->getParent() == node) {
             tmp2->setParent(tmp1);
         } else {
-            swap(tmp1, tmp1->getRight());
+            swapNodes(tmp1, tmp1->getRight());
             tmp1->setRight(node->getRight());
             tmp1->getRight()->setParent(tmp1);
         }
-        swap(node, tmp1);
+        swapNodes(node, tmp1);
         tmp1->setLeft(node->getLeft());
         tmp1->getLeft()->setParent(tmp1);
         tmp1->setColor(node->getColor());
@@ -180,7 +182,7 @@ void RBTree::remove(const int data) {
         removeBalancing(tmp2);
 }
 
-void RBTree::swap(Node* node1, Node* node2) {
+void RBTree::swapNodes(Node* node1, Node* node2) {
     if (node1->getParent() == nullptr)
         _root = node2;
     else if (node1 == node1->getParent()->getLeft())
@@ -203,7 +205,8 @@ void RBTree::removeBalancing(Node* node) {
                 tmp = node->getParent()->getRight();
             }
 
-            if (tmp->getLeft()->getColor() == false && tmp->getRight()->getColor() == false) {
+            if (tmp->getLeft()->getColor() == false &&
+                tmp->getRight()->getColor() == false) {
                 tmp->setColor(true);
                 node = node->getParent();
             } else {
@@ -229,7 +232,8 @@ void RBTree::removeBalancing(Node* node) {
                 tmp = node->getParent()->getLeft();
             }
 
-            if (tmp->getRight()->getColor() == false && tmp->getLeft()->getColor() == false) {
+            if (tmp->getRight()->getColor() == false &&
+                tmp->getLeft()->getColor() == false) {
                 tmp->setColor(true);
                 node = node->getParent();
             } else {
